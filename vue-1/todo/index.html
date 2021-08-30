@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Todos</h1>
+      <div id="red-box" v-if="todosForRemove.length>0">
+        <h3>There are {{todosForRemove.length}} elements in deletion list</h3>
+      </div>
+      <div id="list" v-if="todoList.length>0">
+        <ol>
+          <div id="todoItem">
+            <li v-for="todo in todoList">
+              {{ todo }}
+              <button v-on:click="removeTodoFromList(todo)">Sil</button>
+              <input type="checkbox" @change="checkEvent($event,todo)" />
+            </li>
+          </div>
+        </ol>
+      </div>
+
+      <input
+        @input="handleInput($event.target.value)"
+        v-bind:value="todoForAdd"
+      />
+      <button v-on:click="addToTodoList">Add</button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
